@@ -4,7 +4,7 @@ import { Lead } from './entities/lead.entity';
 import { Repository } from 'typeorm';
 import { Customer } from '../customers/entities/customer.entity';
 import { Auth } from '../auth/entities/auth.entity';
-import { ICustomer } from './entities/customer.interface';
+import { ICustomer } from './interfaces/customer.interface';
 
 @Injectable()
 export class LeadsService {

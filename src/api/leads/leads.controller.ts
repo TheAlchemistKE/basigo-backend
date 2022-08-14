@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { LeadsService } from './leads.service';
 import { ILead } from './interfaces/lead.interface';
-import { ICustomer } from './entities/customer.interface';
+import { ICustomer } from './interfaces/customer.interface';
 import { Roles } from '../roles';
 import { Role } from '../roles';
 

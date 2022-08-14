@@ -6,8 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Lead } from '../../leads/entities/lead.entity';
-import { GenderEnum } from '../../../shared/enums/gender.enum';
-import { Role } from '../../roles/role.enum';
+import { Role } from '../../roles';
 
 @Entity()
 export class Auth {
