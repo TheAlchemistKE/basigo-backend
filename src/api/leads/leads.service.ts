@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { Customer } from '../customers/entities/customer.entity';
 import { Auth } from '../auth/entities/auth.entity';
 import { ICustomer } from './interfaces/customer.interface';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class LeadsService {
@@ -14,15 +15,25 @@ export class LeadsService {
     private readonly customerRepository: Repository<Customer>,
     @InjectRepository(Auth)
     private readonly authRepository: Repository<Auth>,
+    private authService: AuthService,
   ) {}
   public async create(adminId, data: any): Promise<Lead> {
     const admin = await this.authRepository.findOne({ where: { id: adminId } });
+
+    const user = new Auth();
+    user.email = data.email;
+    user.password = data.password;
+    user.role = data.role;
+
+    await this.authService.create(user);
+
     const lead = new Lead();
     lead.firstName = data.firstName;
     lead.middleName = data.middleName;
     lead.lastName = data.lastName;
     lead.location = data.location;
     lead.gender = data.gender;
+
     const newLead = await this.leadRepository.create({
       ...lead,
       createdBy: admin,
