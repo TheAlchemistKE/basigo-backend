@@ -5,7 +5,9 @@ import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
-  const app: NestExpressApplication = await NestFactory.create(AppModule);
+  const app: NestExpressApplication = await NestFactory.create(AppModule, {
+    cors: true,
+  });
   const config: ConfigService = app.get(ConfigService);
   const port: number = config.get<number>('PORT');
   app.setGlobalPrefix('api');
