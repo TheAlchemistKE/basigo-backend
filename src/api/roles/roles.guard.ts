@@ -31,9 +31,9 @@ export class RolesGuard implements CanActivate {
 
     const user: any = {
       name: 'Jane Doe',
-      role: 'lead_admin',
+      roles: ['admin', 'lead_admin', 'lead'],
     };
 
-    return requiredRole.some((role) => user.role == role);
+    return requiredRole.some((role) => user.roles.includes(role));
   }
 }
